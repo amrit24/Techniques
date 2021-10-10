@@ -3,27 +3,25 @@ package slidingWindowTechniques;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class SlidingWindow {
-	
-	private static int windowSum(int[] arr, int k) {
-		
-		if(k>arr.length) return -1;
+public class Test {
+   
+	private static int maxSubArraySum(int[] arr, int window) {
 		int windowSum = 0;
-		 	
-		for(int i=0;i<k;i++) {
+		int i;
+		for(i=0;i<window;i++) {
 			windowSum+=arr[i];
 		}
 		
 		int max = windowSum;
 		
-		for(int j=k;j<arr.length;j++) {
-			windowSum = windowSum + arr[j] - arr[j-k];
-			max = Math.max(max, windowSum);
+		for(int k=i;k<arr.length;k++) {
+			windowSum = windowSum + arr[k] - arr[k-i];
+			max = Math.max(windowSum, max);
 		}
 		
 		return max;
 	}
-
+	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
@@ -45,8 +43,7 @@ public class SlidingWindow {
 		System.out.print("Array is : ");
 		System.out.println(Arrays.toString(arr));
 		
-		System.out.println("Maximum sum of window is : " + windowSum(arr, k));
+		System.out.println("Maximum sum of window is : " + maxSubArraySum(arr, k));
 
 	}
-
 }
